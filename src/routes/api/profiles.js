@@ -4,12 +4,12 @@ const route  = Router()
 
 
 
-route.get('/',(req,res)=>{
+route.get('/:username',(req,res)=>{
 
     res.send(
         {
             "profile": {
-              "username": "jake",
+              "username": req.params.username,
               "bio": "I work at statefarm",
               "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
               "following": false
