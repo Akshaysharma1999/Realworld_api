@@ -32,6 +32,7 @@ const Users =  db.define('user',{
             isUrl:true
         }
     }
+
 })
 
 const Articles = db.define('article',{
