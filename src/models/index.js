@@ -31,6 +31,10 @@ const Users =  db.define('user',{
         validate:{
             isUrl:true
         }
+    },
+    password:{
+        type:Sequelize.STRING,
+        allowNull:false
     }
 
 })
@@ -85,5 +89,4 @@ module.exports = {
     db,
     Users, Articles, Comments, Tags
   }
-  
   

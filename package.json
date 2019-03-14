@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Akshaysharma1999/realworld_api#readme",
   "dependencies": {
     "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.0",
     "mysql2": "^1.6.5",
     "sequelize": "^4.43.0"
   }
