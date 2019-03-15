@@ -1,4 +1,5 @@
 const { Users } = require('../models')
+const { createJwt } = require('../utils/jwt')
 
 async function createUser(userOpts)
 {
@@ -26,10 +27,21 @@ async function createUser(userOpts)
         throw new Error('Error creating user')
     }
     // console.log('here')
-    // console.log(user)
+    //console.log(user)
 
-    return user
-
+  
+    const createdUser = await Users.findOne({
+        attributes: ['email', 'username', 'bio', 'image'],
+        where: {
+          username: user.username
+        }
+      })
+      const token = await createJwt(createdUser.get())
+    
+      return {
+        ...createdUser.get(),
+        token
+      }
 
 }
 
@@ -63,10 +75,13 @@ async function verifyuser(userOpts)
         throw new Error ('wrong password');
     }
 
-
-    return user
-
-
+    const token = await createJwt(user.get())
+    const userJson = {
+      ...user.get(),
+      token
+    }
+    delete userJson.password
+    return userJson
 
 }
 

@@ -1,25 +1,13 @@
 const {Router}  = require('express')
+const {userAuthViaToken} = require('../../middlewares/auth')
 
 const route  = Router()
 
 
-route.get('/',(req,res)=>{
-
-    res.send(
-        {
-            
-                "user": {
-                  "email": "jake@jake.jake",
-                  "token": "jwt.token.here",
-                  "username": "jake",
-                  "bio": "I work at statefarm",
-                  "image": null
-                }
-              
-        }
-
-    )
-
+route.get('/', userAuthViaToken, (req, res) => {
+  if (req.user) {
+    res.send(req.user)
+  }
 })
 
 
